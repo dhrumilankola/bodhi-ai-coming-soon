@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bodhi AI — Coming Soon</title>
+  <meta name="description" content="Bodhi AI is evolving. Something new is on the way." />
+  <meta name="theme-color" content="#0a0a12" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bodhi AI — Coming Soon" />
+  <meta property="og:description" content="Bodhi AI is evolving. Something new is on the way." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bodhi-ai.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #06060c;
+      --fg: #f5f3ff;
+      --muted: #9b96c4;
+      --accent: #8b7cff;
+      --accent2: #45e0c4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      padding: 24px;
+    }
+
+    /* Animated aurora gradient background */
+    .aurora {
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      filter: blur(80px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      animation: drift 18s ease-in-out infinite;
+    }
+    .blob.a { width: 46vmax; height: 46vmax; left: -6vmax; top: -10vmax; background: radial-gradient(circle at 30% 30%, #8b7cff, transparent 60%); }
+    .blob.b { width: 40vmax; height: 40vmax; right: -8vmax; top: 6vmax; background: radial-gradient(circle at 70% 30%, #45e0c4, transparent 60%); animation-delay: -6s; }
+    .blob.c { width: 38vmax; height: 38vmax; left: 20vmax; bottom: -14vmax; background: radial-gradient(circle at 50% 50%, #ff7cce, transparent 60%); animation-delay: -12s; }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(6vmax, 4vmax) scale(1.08); }
+      66% { transform: translate(-5vmax, -3vmax) scale(0.95); }
+    }
+
+    /* Subtle grain/vignette */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.65) 100%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      animation: rise 1.1s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .orb {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #c7c0ff, var(--accent) 45%, #4a3fb0 100%);
+      box-shadow: 0 0 60px rgba(139,124,255,0.6), inset 0 0 24px rgba(255,255,255,0.25);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(139,124,255,0.55), inset 0 0 24px rgba(255,255,255,0.25); }
+      50% { transform: scale(1.06); box-shadow: 0 0 90px rgba(69,224,196,0.5), inset 0 0 24px rgba(255,255,255,0.3); }
+    }
+
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 8vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    h1 .grad {
+      background: linear-gradient(100deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.lede {
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 48ch;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 28px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border: 1px solid rgba(139,124,255,0.4);
+      border-radius: 999px;
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: rgba(139,124,255,0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+    }
+    .cta:hover {
+      border-color: var(--accent);
+      background: rgba(139,124,255,0.18);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 24px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      font-size: 0.8rem;
+      color: rgba(155,150,196,0.6);
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora">
+    <div class="blob a"></div>
+    <div class="blob b"></div>
+    <div class="blob c"></div>
+  </div>
+  <div class="vignette"></div>
+
+  <main class="content">
+    <div class="orb" aria-hidden="true"></div>
+    <div class="eyebrow">Bodhi&nbsp;AI</div>
+    <h1>Something new is<br /><span class="grad">taking shape</span></h1>
+    <div class="divider"></div>
+    <p class="lede">
+      We're reimagining how people learn by talking. Bodhi&nbsp;AI is being rebuilt
+      from the ground up &mdash; quieter for now, but not for long.
+    </p>
+    <a class="cta" href="mailto:hello@bodhi-ai.com">
+      Get in touch &rarr;
+    </a>
+  </main>
+
+  <footer>&copy; <span id="y"></span> Bodhi AI. All rights reserved.</footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
